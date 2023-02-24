@@ -42,10 +42,18 @@ parseDigits('1 кефир, 0.5 батона');
  * @param {string} pad
  * @return {string}
  */
-const addPadStart = (target, length, pad) => {
+const mySimplePadStart = (target, length, pad) => {
   const start = pad.repeat(length);
 
   return `${start}${target}`.slice(-length);
 };
-addPadStart('1', 2, '0');
+mySimplePadStart('1', 2, '0');
 
+const myPadStart = (string, length, pad) => {
+  const actualPad = length - string.length;
+  if (actualPad <= 0) {
+    return string;
+  }
+  return pad.slice(0, actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+};
+myPadStart('q', 4, 'werty');
