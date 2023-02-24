@@ -6,6 +6,8 @@
  */
 const fitsLength = (target, length) => target.length <= length;
 
+fitsLength('проверяемая строка', 20);
+
 /**
  * Проверит является ли строка или число палиндромом
  * @param {string|number} target
@@ -18,6 +20,8 @@ const isPalindrome = (target) => {
   return normalized === reversed;
 };
 
+isPalindrome('Лёша на полке клопа нашёл ');
+
 /**
  * Извлечет из строки или числа цифры от 0 до 9 и объединит их в одно число
  * @param {string|number} target
@@ -28,6 +32,7 @@ const parseDigits = (target) => {
 
   return digits ? Number(digits) : NaN;
 };
+parseDigits('1 кефир, 0.5 батона');
 
 /**
  * Добавит в начало строки символы другой строки,
@@ -37,9 +42,10 @@ const parseDigits = (target) => {
  * @param {string} pad
  * @return {string}
  */
-const addPadStart =(target, length, pad) => {
+const addPadStart = (target, length, pad) => {
   const start = pad.repeat(length);
 
   return `${start}${target}`.slice(-length);
 };
+addPadStart('1', 2, '0');
 
