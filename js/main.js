@@ -58,7 +58,7 @@ const createCommentState = (id) => {
   const message = createMessage();
   const name = pickItemFromList(NAMES);
 
-  return {id, avatar, message, name}
+  return {id, avatar, message, name};
 };
 
 /**
