@@ -1,4 +1,3 @@
-
 import {pickItemFromList, pickIntegerInRange} from './util.js';
 
 const DESCRIPTIONS = [
@@ -78,4 +77,4 @@ const createImageStateList = (length = 25) => {
 
 //const createImages = createImageStateList(); ?? есть смысл такой доп константы??
 
-export {createImageStateList};
+export default createImageStateList;

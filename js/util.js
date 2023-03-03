@@ -4,7 +4,7 @@
  * @param {Item[]} list
  * @return {Item}
  */
-const pickItemFromList = (list) => {
+export const pickItemFromList = (list) => {
   const index = Math.floor(Math.random() * list.length);
 
   return list[index];
@@ -16,11 +16,9 @@ const pickItemFromList = (list) => {
  * @param {number} max
  * @return {number}
  */
-const pickIntegerInRange = (min, max) => {
+export const pickIntegerInRange = (min, max) => {
   const value = min + Math.random() * (max - min);
 
   return Math.round(value);
 };
 
-export {pickItemFromList};
-export {pickIntegerInRange};
