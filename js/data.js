@@ -75,6 +75,4 @@ const createImageStateList = (length = 25) => {
   return list.map((start, index) => createImageState(start + index));
 };
 
-//const createImages = createImageStateList(); ?? есть смысл такой доп константы??
-
 export default createImageStateList;
