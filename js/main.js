@@ -1,4 +1,5 @@
 import createPictureStateList from './data.js';
-import renderThumbnails from './thumbnails.js';
+import initGallery from './thumbnails.js';
 
-renderThumbnails(createPictureStateList());
+createPictureStateList();
+initGallery(createPictureStateList());

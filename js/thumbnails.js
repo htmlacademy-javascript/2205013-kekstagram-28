@@ -2,34 +2,51 @@
  * @type {HTMLElement}
  */
 const picturesList = document.querySelector('.pictures');
+
 /**
- *
+ * Находит шаблон по ID
+ * @type {HTMLTemplateElement}
  */
-const pictureTemplate = document.querySelector('#picture')
-  .content
-  .querySelector('.picture');
+const pictureTemplate = document.querySelector('#picture');
 
-const createThumbnail = ({description, url, likes, comments}) => {
-  const newPicture = pictureTemplate.cloneNode(true);
+/**
+ * Создает новое изображение по шаблону
+ * @param {PictureState} data
+ * @return {HTMLAnchorElement}
+ */
+const createPicture = (data) => {
+  const picture =
+  /**
+   * @type {HTMLAnchorElement}
+   */
+  (pictureTemplate.content.querySelector('.picture').cloneNode(true));
 
-  newPicture.querySelector('.picture__img').src = url;
-  newPicture.querySelector('.picture__img').alt = description;
-  newPicture.querySelector('.picture__likes').textContent = likes;
-  newPicture.querySelector('.picture__comments').textContent = comments.length;
+  picture.querySelector('.picture__img').setAttribute('src', data.url);
+  picture.querySelector('.picture__img').setAttribute('alt', data.description);
+  picture.querySelector('.picture__comments').textContent = String(data.comments.length);
+  picture.querySelector('.picture__likes').textContent = String(data.likes);
 
-  return newPicture;
+  return picture;
 };
 
-const renderThumbnails = (pictures) => {
-  const fragment = document.createDocumentFragment();
-  pictures.forEach((picture) => {
-    const thumbnail = createThumbnail(picture);
-    fragment.append(thumbnail);
-  });
+/**
+ * @param {PictureState[]} data
+ */
+const renderPictures = (data) => {
+  const pictures = picturesList.querySelectorAll('.picture');
+  const newPictures = data.map(createPicture);
 
-  picturesList.append(fragment);
+  pictures.forEach((picture) => picture.remove());
+  picturesList.append(...newPictures);
 };
 
-export default renderThumbnails;
+/**
+ * @param {PictureState[]} data
+ */
+const initGallery = (data) => {
+  // TODO: Сортировка
 
+  renderPictures(data);
+};
 
+export default initGallery;
