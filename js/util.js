@@ -21,4 +21,8 @@ export const pickIntegerInRange = (min, max) => {
 
   return Math.round(value);
 };
-
+/**
+ * При нажатии ESK
+ * @param {*} evt
+ */
+export const isEscapeKey = (evt) => evt.key === 'Escape';
