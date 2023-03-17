@@ -11,7 +11,11 @@ const picturesList = document.querySelector('.pictures');
  * @type {HTMLTemplateElement}
  */
 const pictureTemplate = document.querySelector('#picture');
-const popup = pictureTemplate.querySelector('.big-picture');
+
+/**
+ * @type {HTMLElement}
+ */
+const popup = document.querySelector('.big-picture');
 
 /**
  * Создает новое изображение по шаблону

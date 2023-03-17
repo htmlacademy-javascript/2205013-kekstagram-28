@@ -18,6 +18,7 @@ const onDocumentKeyDown = (event) => {
  */
 const onCancelButtonClick = (event) => {
   const popup = event.target.closest('.overlay');
+
   popup.classList.add('hidden');
 
   document.body.classList.remove('modal-open');
@@ -35,8 +36,8 @@ const openPopup = (popup) => {
   popup.scroll(0,0);
   cancelButton.addEventListener('click', onCancelButtonClick);
 
-  document.addEventListener('keydown', onDocumentKeyDown);
   document.body.classList.add('modal-open');
-};
+  document.addEventListener('keydown', onDocumentKeyDown);
+  };
 
 export default openPopup;

@@ -11,7 +11,7 @@ const discussion = preview.querySelector('.social__comments');
 /**
  * @type {HTMLLIElement}
  */
-const commentTemplate = discussion.querySelector('.social__comments');
+const commentTemplate = discussion.querySelector('.social__comment');
 
 
 /**
@@ -24,7 +24,7 @@ const createComment = (data) => {
     /**
      * @type {HTMLElement}
      */
-    (commentTemplate.cloneNode(true));
+     (commentTemplate.cloneNode(true));
 
   comment.querySelector('.social__picture').setAttribute('src', data.avatar);
   comment.querySelector('.social__picture').setAttribute('alt', data.name);
