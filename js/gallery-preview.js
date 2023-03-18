@@ -24,7 +24,7 @@ const createComment = (data) => {
     /**
      * @type {HTMLElement}
      */
-     (commentTemplate.cloneNode(true));
+    (commentTemplate.cloneNode(true));
 
   comment.querySelector('.social__picture').setAttribute('src', data.avatar);
   comment.querySelector('.social__picture').setAttribute('alt', data.name);

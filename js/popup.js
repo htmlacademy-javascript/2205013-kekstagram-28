@@ -1,8 +1,10 @@
 /**
+ * Событие: по нажатию Esс(если вместе с классом overlay не добавлен hidden)
+ * и у элемента есть класс cancel
  * @param {KeyboardEvent} event
  */
-const onDocumentKeyDown = (event) => {
-  if (event.key.startsWith('Esc)')) {
+const onDocumentKeydown = (event) => {
+  if (event.key.startsWith('Esc')) {
     /**
      * @type {HTMLButtonElement}
      */
@@ -13,8 +15,7 @@ const onDocumentKeyDown = (event) => {
 };
 
 /**
- *
- * @param {MouseEvent & {target: Element}} event
+ * * @param {MouseEvent & {target: Element}} event
  */
 const onCancelButtonClick = (event) => {
   const popup = event.target.closest('.overlay');
@@ -22,7 +23,7 @@ const onCancelButtonClick = (event) => {
   popup.classList.add('hidden');
 
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeyDown);
+  document.removeEventListener('keydown', onDocumentKeydown);
 };
 
 /**
@@ -33,11 +34,11 @@ const openPopup = (popup) => {
   const cancelButton = popup.querySelector('.cancel');
 
   popup.classList.remove('hidden');
-  popup.scroll(0,0);
+  popup.scroll(0, 0);
   cancelButton.addEventListener('click', onCancelButtonClick);
 
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeyDown);
-  };
+  document.addEventListener('keydown', onDocumentKeydown);
+};
 
 export default openPopup;
