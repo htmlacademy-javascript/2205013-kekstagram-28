@@ -1,6 +1,5 @@
 /**
- * Событие: по нажатию Esс(если вместе с классом overlay не добавлен hidden)
- * и у элемента есть класс cancel
+ * Событие по нажатию Esс
  * @param {KeyboardEvent} event
  */
 const onDocumentKeydown = (event) => {
@@ -15,7 +14,7 @@ const onDocumentKeydown = (event) => {
 };
 
 /**
- * * @param {MouseEvent & {target: Element}} event
+ * @param {MouseEvent & {target: Element}} event
  */
 const onCancelButtonClick = (event) => {
   const popup = event.target.closest('.overlay');
