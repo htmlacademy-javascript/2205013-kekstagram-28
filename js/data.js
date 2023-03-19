@@ -59,7 +59,7 @@ const createPictureState = (id) => {
   const url = `photos/${id}.jpg`;
   const description = pickItemFromList(DESCRIPTIONS);
   const likes = pickIntegerInRange(15, 200);
-  const comments = createCommentStateList(pickIntegerInRange(1, 5));
+  const comments = createCommentStateList(pickIntegerInRange(1, 15));
 
   return {id, url, description, likes, comments};
 };
