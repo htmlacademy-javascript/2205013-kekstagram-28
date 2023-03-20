@@ -1,15 +1,18 @@
+const upLoadForm = document.querySelector('.img-upload__form');
 const upLoad = document.querySelector('#upload-file');
-const upLoadForm = document.querySelector('.img-upload__overlay');
+const upLoadEdit = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
+
+new Pristine(upLoadForm);
 
 upLoad.addEventListener('change', () => {
   // event.preventDefault();
-  upLoadForm.classList.remove('hidden');
+  upLoadEdit.classList.remove('hidden');
 });
 
 
 cancelButton.addEventListener('click', () => {
-  upLoadForm.classList.add('hidden');
+  upLoadEdit.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
 });
