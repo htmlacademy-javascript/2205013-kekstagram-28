@@ -20,10 +20,10 @@ const pristine = new Pristine(form, {
  */
 const addHashTagsValidator = (message, validate) => {
   pristine.addValidator(form.hashtags, (value) => {
-    const tags = value.split(' ').filter(Boolean);
+    const tags = value.toLowerCase().split(' ').filter(Boolean);
 
     return validate(tags);
-  }, message);
+  }, message, 1, true);
 };
 
 
@@ -38,8 +38,15 @@ const onFormChange = (event) => {
 };
 
 addHashTagsValidator(
+  'Хештеги должны начинаться с символа # (решетка)',
+  (tags) => tags.every((tag) => tag.startsWith('#'))
+);
 
-)
+addHashTagsValidator(
+  'После символа # (решетка) должны идти буквы/цифры',
+  (tags) => tags.every((tag) => /^#[a-zа-яё0-1$]/.test(tag))
+);
+
 form.addEventListener('change', onFormChange);
 
 openPopup(popup);
