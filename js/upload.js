@@ -10,9 +10,22 @@ const popup = form.querySelector('.img-upload__overlay');
 
 // @ts-ignore
 const pristine = new Pristine(form, {
-  classTo: 'form-group',
+  classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
 });
+
+/**
+ * @param {string} message
+ * @param {(tags: string[]) => boolean} validate
+ */
+const addHashTagsValidator = (message, validate) => {
+  pristine.addValidator(form.hashtags, (value) => {
+    const tags = value.split(' ').filter(Boolean);
+
+    return validate(tags);
+  }, message);
+};
+
 
 /**
  * @param {event} event
@@ -24,6 +37,9 @@ const onFormChange = (event) => {
   }
 };
 
+addHashTagsValidator(
+
+)
 form.addEventListener('change', onFormChange);
 
 openPopup(popup);
