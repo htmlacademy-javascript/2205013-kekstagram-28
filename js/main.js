@@ -1,6 +1,6 @@
 import createPictureStateList from './data.js';
 import initGallery from './thumbnails.js';
-import './form.js';
+import './upload.js';
 
 createPictureStateList();
 initGallery(createPictureStateList());
