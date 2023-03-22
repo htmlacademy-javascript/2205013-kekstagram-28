@@ -46,7 +46,16 @@ const onFormChange = (event) => {
 
 //Сбросит подсказки после закрытия формы
 const onFormReset = () => {
-pristine.reset();
+  pristine.reset();
+};
+
+/**
+ * @param {SubmitEvent} event
+ */
+const onFormSubmit = (event) => {
+  event.preventDefault();
+
+  pristine.validate();
 };
 
 addHashTagsValidator(
@@ -86,5 +95,4 @@ addDescriptionValidator(
 
 form.addEventListener('change', onFormChange);
 form.addEventListener('reset', onFormReset);
-
-openPopup(popup);
+form.addEventListener('submit', onFormSubmit);
