@@ -44,7 +44,22 @@ addHashTagsValidator(
 
 addHashTagsValidator(
   'После символа # (решетка) должны идти буквы/цифры',
-  (tags) => tags.every((tag) => /^#[a-zа-яё0-1$]/.test(tag))
+  (tags) => tags.every((tag) => /^#[a-zа-яё0-9$]/.test(tag))
+);
+
+addHashTagsValidator(
+  'Максимальная длина хештега 20 символов',
+  (tags) => tags.every((tag) => tag.length <= 20)
+);
+
+addHashTagsValidator(
+  'Укажите не более 5 хештегов',
+  (tags) => tags.length <= 5
+);
+
+addHashTagsValidator(
+  'Хештеги не должны повторятся',
+  (tags) => tags.length === new Set(tags).size
 );
 
 form.addEventListener('change', onFormChange);
