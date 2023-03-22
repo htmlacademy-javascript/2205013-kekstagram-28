@@ -26,6 +26,13 @@ const addHashTagsValidator = (message, validate) => {
   }, message, 1, true);
 };
 
+/**
+ * @param {string} message
+ * @param {(description: string) => boolean} validate
+ */
+const addDescriptionValidator = (message, validate) => {
+  pristine.addValidator(form.description, validate, message);
+};
 
 /**
  * @param {event} event
@@ -60,6 +67,11 @@ addHashTagsValidator(
 addHashTagsValidator(
   'Хештеги не должны повторятся',
   (tags) => tags.length === new Set(tags).size
+);
+
+addDescriptionValidator(
+  'Длина описание не должна превышать 140 символов',
+  (description) => description.length <= 140
 );
 
 form.addEventListener('change', onFormChange);
