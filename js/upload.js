@@ -44,6 +44,11 @@ const onFormChange = (event) => {
   }
 };
 
+//Сбросит подсказки после закрытия формы
+const onFormReset = () => {
+pristine.reset();
+};
+
 addHashTagsValidator(
   'Хештеги должны начинаться с символа # (решетка)',
   (tags) => tags.every((tag) => tag.startsWith('#'))
@@ -80,5 +85,6 @@ addDescriptionValidator(
 );
 
 form.addEventListener('change', onFormChange);
+form.addEventListener('reset', onFormReset);
 
 openPopup(popup);

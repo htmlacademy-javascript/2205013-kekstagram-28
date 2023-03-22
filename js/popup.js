@@ -1,9 +1,14 @@
+// import {isEscapeKey} from './util';
+
 /**
  * Событие по нажатию Esс
- * @param {KeyboardEvent} event
+ * @param {KeyboardEvent & {target: Element}} event
  */
 const onDocumentKeydown = (event) => {
-  if (event.key.startsWith('Esc')) {
+  const isEscapeKey = event.key.startsWith('Esc');
+  const isTextField = event.target.matches('input[type="text"], textarea');
+
+  if (isEscapeKey && !isTextField) {
     /**
      * @type {HTMLButtonElement}
      */
