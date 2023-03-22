@@ -51,7 +51,7 @@ addHashTagsValidator(
 
 addHashTagsValidator(
   'После символа # (решетка) должны идти буквы/цифры',
-  (tags) => tags.every((tag) => /^#[a-zа-яё0-9$]/.test(tag))
+  (tags) => tags.every((tag) => /^#[a-zа-яё0-9]+$/.test(tag))
 );
 
 addHashTagsValidator(
