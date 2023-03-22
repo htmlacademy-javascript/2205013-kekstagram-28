@@ -1,5 +1,3 @@
-// import {isEscapeKey} from './util';
-
 /**
  * Событие по нажатию Esс
  * @param {KeyboardEvent & {target: Element}} event

@@ -1,4 +1,5 @@
 import openPopup from './popup.js';
+
 /**
  * @type {HTMLFormElement}
  */
