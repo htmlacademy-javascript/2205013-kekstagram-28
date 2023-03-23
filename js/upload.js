@@ -70,11 +70,6 @@ addHashTagsValidator(
 );
 
 addHashTagsValidator(
-  'Хештеги должны разделяться пробелами',
-  (tags) => tags.every((tag) => !tag.endsWith('#'))
-);
-
-addHashTagsValidator(
   'Максимальная длина хештега 20 символов',
   (tags) => tags.every((tag) => tag.length <= 20)
 );
