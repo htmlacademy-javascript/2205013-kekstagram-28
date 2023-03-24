@@ -1,0 +1,9 @@
+.pristine-error {
+  color: #ff6347;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+input+.pristine-error {
+  transform: translateY(-10px);
+}
