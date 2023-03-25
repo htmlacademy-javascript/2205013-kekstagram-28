@@ -26,7 +26,7 @@ const createSliderOptions = (name) => {
   const [min, max, step] = effectRangeMap[name];
 
   return {
-    range: {min, max}
+    range: {min, max},
     step,
     start: max
   };
@@ -62,6 +62,12 @@ const setEffect = (name) => {
   picture.setAttribute('class', `effects__preview--${name}`);
 };
 
+// @ts-ignore
+// const effectSlider = noUislider.create(
+//   document.querySelector('.effect-level__slider'),
+//   createSliderOptions(Effect.NONE)
+// );
+
 /**
  * @param {MouseEvent} event
  */
@@ -92,7 +98,7 @@ const onEffectPickerChange = (event) => {
  */
 const updatePreview = (data) => {
   //TODO подстановка изображения
-  void data
+  void data;
   setScale(Scale.MAX);
   setEffect(Effect.NONE);
   scaleControl.addEventListener('click', onScaleControlClick);
