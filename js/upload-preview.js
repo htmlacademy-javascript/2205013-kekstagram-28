@@ -24,6 +24,11 @@ const picture = document.querySelector('.img-upload__preview img');
 const scaleControl = document.querySelector('.img-upload__scale');
 
 /**
+ * @type {HTMLFieldSetElement}
+ */
+const effectPicker = document.querySelector('.img-upload__effects');
+
+/**
  * @param {number} percent
  */
 const setScale = (percent) => {
@@ -56,14 +61,23 @@ const onScaleControlClick = (event) => {
 };
 
 /**
+ * @param {Event & {target: Element}} event
+ */
+const onEffectPickerChange = (event) => {
+  const name = event.target.getAttribute('value');
+setEffect(name);
+};
+
+/**
  * @param {File} data
  */
 const updatePreview = (data) => {
   //TODO подстановка изображения
   void data
   setScale(Scale.MAX);
-  setEffect('sepia');
+  setEffect(Effect.NONE);
   scaleControl.addEventListener('click', onScaleControlClick);
+  effectPicker.addEventListener('change', onEffectPickerChange);
 };
 
 export default updatePreview;
