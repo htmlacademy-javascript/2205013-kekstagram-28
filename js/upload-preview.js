@@ -13,6 +13,25 @@ const Effect = {
   HEAT: 'heat'
 };
 
+const effectRangeMap = {
+  [Effect.NONE]: [0, 100, 1],
+  [Effect.CHROME]: [0, 1, .1],
+  [Effect.SEPIA]: [0, 1, .1],
+  [Effect.MARVIN]: [0, 100, 1],
+  [Effect.PHOBOS]: [0, 3, .1],
+  [Effect.HEAT]: [1, 3, .1]
+};
+
+const createSliderOptions = (name) => {
+  const [min, max, step] = effectRangeMap[name];
+
+  return {
+    range: {min, max}
+    step,
+    start: max
+  };
+};
+
 /**
  * @type {HTMLImageElement}
  */
@@ -65,7 +84,7 @@ const onScaleControlClick = (event) => {
  */
 const onEffectPickerChange = (event) => {
   const name = event.target.getAttribute('value');
-setEffect(name);
+  setEffect(name);
 };
 
 /**
