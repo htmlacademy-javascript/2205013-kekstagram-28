@@ -4,6 +4,15 @@ const Scale = {
   STEP: 25
 };
 
+const Effect = {
+  NONE: 'none',
+  CHROME: 'chrome',
+  SEPIA: 'sepia',
+  MARVIN: 'marvin',
+  PHOBOS: 'phobos',
+  HEAT: 'heat'
+};
+
 /**
  * @type {HTMLImageElement}
  */
@@ -20,6 +29,13 @@ const scaleControl = document.querySelector('.img-upload__scale');
 const setScale = (percent) => {
   picture.style.setProperty('transform', `scale(${percent / 100})`);
   scaleControl.querySelector('input').setAttribute('value', `${percent}%`);
+};
+
+/**
+ * @param {string} name
+ */
+const setEffect = (name) => {
+  picture.setAttribute('class', `effects__preview--${name}`);
 };
 
 /**
@@ -46,6 +62,7 @@ const updatePreview = (data) => {
   //TODO подстановка изображения
   void data
   setScale(Scale.MAX);
+  setEffect('sepia');
   scaleControl.addEventListener('click', onScaleControlClick);
 };
 
