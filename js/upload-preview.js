@@ -1,3 +1,9 @@
+const Scale = {
+  MIN: 25,
+  MAX: 100,
+  STEP: 25
+};
+
 /**
  * @type {HTMLImageElement}
  */
@@ -13,6 +19,7 @@ const scaleControl = document.querySelector('.img-upload__scale');
  */
 const setScale = (percent) => {
   picture.style.setProperty('transform', `scale(${percent / 100})`);
+  scaleControl.querySelector('input').setAttribute('value', `${percent}%`);
 
 };
 
@@ -22,7 +29,7 @@ const setScale = (percent) => {
 const updatePreview = (data) => {
   //TODO подстановка изображения
   void data
-  setScale(100);
+  setScale(Scale.MAX);
 };
 
 export default updatePreview;
