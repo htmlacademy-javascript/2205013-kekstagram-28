@@ -42,11 +42,10 @@ const addDescriptionValidator = (message, validate) => {
 const onFormChange = (event) => {
   if (event.target === form.filename) {
     const data = event.target.files.item[0];
-
+    updatePreview(data);
+    openPopup(popup);
   }
 };
-updatePreview();
-openPopup(popup);
 
 //Сбросит подсказки после закрытия формы
 const onFormReset = () => {

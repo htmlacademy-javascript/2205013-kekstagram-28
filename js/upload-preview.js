@@ -22,13 +22,30 @@ const effectRangeMap = {
   [Effect.HEAT]: [1, 3, .1]
 };
 
+//Форматирует значения для слайдера в нужный нам вид согласно ТЗ
+const effectFormatterMap = {
+  [Effect.NONE]: () => '',
+  [Effect.CHROME]: (value) => `grayscale(${value})`,
+  [Effect.SEPIA]: (value) => `sepia(${value})`,
+  [Effect.MARVIN]: (value) => `invert(${value}%)`,
+  [Effect.PHOBOS]: (value) => `blur(${value}px)`,
+  [Effect.HEAT]: (value) => `brightness(${value})`
+};
+
 const createSliderOptions = (name) => {
   const [min, max, step] = effectRangeMap[name];
+  const format = {
+    to: effectFormatterMap[name],
+    from: Number
+  };
 
   return {
     range: {min, max},
     step,
-    start: max
+    start: max,
+    format,
+    behaviour: 'snap',
+    connect: 'lower'
   };
 };
 
@@ -48,6 +65,17 @@ const scaleControl = document.querySelector('.img-upload__scale');
 const effectPicker = document.querySelector('.img-upload__effects');
 
 /**
+ * @type {HTMLInputElement}
+ */
+const effectLevel = document.querySelector('.effect-level__value');
+
+// @ts-ignore
+const effectSlider = noUiSlider.create(
+  document.querySelector('.effect-level__slider'),
+  createSliderOptions(Effect.NONE)
+);
+
+/**
  * @param {number} percent
  */
 const setScale = (percent) => {
@@ -60,13 +88,9 @@ const setScale = (percent) => {
  */
 const setEffect = (name) => {
   picture.setAttribute('class', `effects__preview--${name}`);
+  effectSlider.updateOptions(createSliderOptions(name));
+  effectLevel.parentElement.classList.toggle('hidden', name === Effect.NONE);
 };
-
-// @ts-ignore
-const effectSlider = noUiSlider.create(
-  document.querySelector('.effect-level__slider'),
-  createSliderOptions(Effect.NONE)
-);
 
 /**
  * @param {MouseEvent} event
@@ -90,7 +114,13 @@ const onScaleControlClick = (event) => {
  */
 const onEffectPickerChange = (event) => {
   const name = event.target.getAttribute('value');
+
   setEffect(name);
+};
+
+const onEffectSliderUpdate = () => {
+  picture.style.setProperty('filter', effectSlider.get());
+  effectLevel.setAttribute('value', effectSlider.get(true));
 };
 
 /**
@@ -103,6 +133,7 @@ const updatePreview = (data) => {
   setEffect(Effect.NONE);
   scaleControl.addEventListener('click', onScaleControlClick);
   effectPicker.addEventListener('change', onEffectPickerChange);
+  effectSlider.on('update', onEffectSliderUpdate);
 };
 
 export default updatePreview;
