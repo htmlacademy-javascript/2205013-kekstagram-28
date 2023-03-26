@@ -63,10 +63,10 @@ const setEffect = (name) => {
 };
 
 // @ts-ignore
-// const effectSlider = noUislider.create(
-//   document.querySelector('.effect-level__slider'),
-//   createSliderOptions(Effect.NONE)
-// );
+const effectSlider = noUiSlider.create(
+  document.querySelector('.effect-level__slider'),
+  createSliderOptions(Effect.NONE)
+);
 
 /**
  * @param {MouseEvent} event
