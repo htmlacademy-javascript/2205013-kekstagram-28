@@ -25,7 +25,7 @@ export const pickIntegerInRange = (min, max) => {
 /**
  * Обрабатывает ошибку при обращении к серверу
  * @param {string} url
- * @param {RequestInit} options
+ * @param {RequestInit} [options]
  * @return {Promise}
  */
 export const request = async (url, options) => {
