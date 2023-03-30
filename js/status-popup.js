@@ -2,7 +2,7 @@
  * @param {KeyboardEvent} event
  */
 const onDocumentKeydown = (event) => {
-  if(event.key.startsWith('Esc')) {
+  if (event.key.startsWith('Esc')) {
     /**
      * @type {HTMLElement}
      */
@@ -26,8 +26,9 @@ const onPopupClick = (event) => {
 
 /**
  * @param {'success'|'error'} type
+ * @param {{title?: string, button?: string}} data
  */
-const openStatusPopup = (type) => {
+const openStatusPopup = (type, data = {}) => {
   /**
    * @type {HTMLTemplateElement}
    */
@@ -37,6 +38,10 @@ const openStatusPopup = (type) => {
      * @type {HTMLElement}
      */
     (popupTemplate.content.querySelector(`.${type}`).cloneNode(true));
+
+  Object.keys(data).forEach((key) => {
+    popup.querySelector(`.${type}__${key}`).textContent = data[key];
+  });
 
   popup.addEventListener('click', onPopupClick);
   document.addEventListener('keydown', onDocumentKeydown, true);
