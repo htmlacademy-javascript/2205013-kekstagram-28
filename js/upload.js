@@ -1,6 +1,8 @@
 import openPopup from './popup.js';
 import updatePreview from './upload-preview.js';
 import openStatusPopup from './status-popup.js';
+import {request} from './util.js';
+
 openStatusPopup('error');
 
 /**

@@ -2,7 +2,6 @@
  * @param {KeyboardEvent} event
  */
 const onDocumentKeydown = (event) => {
-  // const isEscapeKey = event.key.startsWith('Esc');
   if(event.key.startsWith('Esc')) {
     /**
      * @type {HTMLElement}
