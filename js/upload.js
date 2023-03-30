@@ -1,5 +1,7 @@
 import openPopup from './popup.js';
 import updatePreview from './upload-preview.js';
+import openStatusPopup from './status-popup.js';
+openStatusPopup('error');
 
 /**
  * @type {HTMLFormElement}
