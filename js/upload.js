@@ -3,8 +3,6 @@ import updatePreview from './upload-preview.js';
 import openStatusPopup from './status-popup.js';
 import {request} from './util.js';
 
-openStatusPopup('error');
-
 /**
  * @type {HTMLFormElement}
  */
@@ -45,13 +43,18 @@ const sendFormData = async () => {
   const method = form.getAttribute('method');
   const body = new FormData(form);
 
+  form.submitButton.setAttribute('disabled', '');
+
   try {
     await request(url, {method, body});
+
+    form.resetButton.click();
     openStatusPopup('success');
 
   } catch (exception) {
     openStatusPopup('error');
   }
+  form.submitButton.removeAttribute('disabled');
 };
 
 /**
