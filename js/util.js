@@ -23,6 +23,7 @@ export const pickIntegerInRange = (min, max) => {
 };
 
 /**
+ * Обрабатывает ошибку при обращении к серверу
  * @param {string} url
  * @param {RequestInit} options
  * @return {Promise}
@@ -30,7 +31,7 @@ export const pickIntegerInRange = (min, max) => {
 export const request = async (url, options) => {
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error(`${response.status}. ${response.statusText}`)
+    throw new Error(`${response.status}. ${response.statusText}`);
   }
 
   return response.json();

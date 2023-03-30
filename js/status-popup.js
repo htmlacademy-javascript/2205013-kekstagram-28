@@ -9,6 +9,7 @@ const onDocumentKeydown = (event) => {
     const popup = document.querySelector('.success, .error');
 
     popup.click();
+    event.stopPropagation();
   }
 };
 
@@ -19,7 +20,7 @@ const onPopupClick = (event) => {
   if (event.target.matches('section, button')) {
     event.currentTarget.remove();
 
-    document.removeEventListener('keydown', onDocumentKeydown);
+    document.removeEventListener('keydown', onDocumentKeydown, true);
   }
 };
 
@@ -38,7 +39,7 @@ const openStatusPopup = (type) => {
     (popupTemplate.content.querySelector(`.${type}`).cloneNode(true));
 
   popup.addEventListener('click', onPopupClick);
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onDocumentKeydown, true);
 
   document.body.append(popup);
 };

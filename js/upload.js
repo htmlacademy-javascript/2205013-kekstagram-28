@@ -40,6 +40,20 @@ const addDescriptionValidator = (message, validate) => {
   pristine.addValidator(form.description, validate, message);
 };
 
+const sendFormData = async () => {
+  const url = form.getAttribute('action');
+  const method = form.getAttribute('method');
+  const body = new FormData(form);
+
+  try {
+    await request(url, {method, body});
+    openStatusPopup('success');
+
+  } catch (exception) {
+    openStatusPopup('error');
+  }
+};
+
 /**
  * @param {Event & {target: HTMLInputElement}} event
  */
@@ -62,7 +76,9 @@ const onFormReset = () => {
 const onFormSubmit = (event) => {
   event.preventDefault();
 
-  pristine.validate();
+  if (pristine.validate()) {
+    sendFormData();
+  }
 };
 
 addHashTagsValidator(
