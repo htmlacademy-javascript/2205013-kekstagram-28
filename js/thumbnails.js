@@ -23,6 +23,11 @@ const pictureTemplate = document.querySelector('#picture');
 const popup = document.querySelector('.big-picture');
 
 /**
+ *  @type {PictureState[]}
+ */
+let initialData;
+
+/**
  * Создает новое изображение по шаблону
  * @param {PictureState} data
  * @return {HTMLAnchorElement}
@@ -75,15 +80,35 @@ const onMenuClick = (event) => {
   });
 
   selectedButton.classList.add('img-filters__button--active');
+  selectedButton.dispatchEvent(new Event('change'));
+};
 
+/**
+ * @param {Event & {target: HTMLButtonElement}} event
+ */
+const onMenuChange = (event) => {
+  const data = structuredClone(initialData);
+
+  switch (event.target.getAttribute('id')) {
+    case 'filter-random':
+      data.sort(() => Math.random() - .5).splice(10);
+      break;
+    case 'filter-discussed':
+      break;
+  }
+
+  renderPictures(data);
 };
 
 /**
  * @param {PictureState[]} data
  */
 const initGallery = (data) => {
+  initialData = data;
+
   menu.classList.remove('img-filters--inactive');
   menu.addEventListener('click', onMenuClick);
+  menu.addEventListener('change', onMenuChange, true);
 
   renderPictures(data);
 };
