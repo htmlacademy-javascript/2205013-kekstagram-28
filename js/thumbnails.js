@@ -94,6 +94,7 @@ const onMenuChange = (event) => {
       data.sort(() => Math.random() - .5).splice(10);
       break;
     case 'filter-discussed':
+      data.sort((a,b) => b.comments.length - a.comments.length);
       break;
   }
 
