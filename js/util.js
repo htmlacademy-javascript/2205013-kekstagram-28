@@ -37,8 +37,13 @@ export const request = async (url, options) => {
   return response.json();
 };
 
-// Функция для устранения дребезга
-function debounce (callback, timeoutDelay = 500) {
+/**
+ * Функция для устранения дребезга
+ * @param {(...args: any) => any} callback
+ * @param {number} delay
+ * @returns {(...args: any) => any}
+ */
+export const debounce = (callback, delay = 500) => {
   // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
   // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
   let timeoutId;
@@ -49,15 +54,17 @@ function debounce (callback, timeoutDelay = 500) {
     clearTimeout(timeoutId);
 
     // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
-    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+    timeoutId = setTimeout(() => {
+      callback.apply(...rest);
+    }, delay);
 
     // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
     // пока действие совершается чаще, чем переданная задержка timeoutDelay
   };
-}
+};
 
 // Функция для пропуска кадров
-function throttle (callback, delayBetweenFrames) {
+export const throttle = (callback, delayBetweenFrames) => {
   // Используем замыкания, чтобы время "последнего кадра" навсегда приклеилось
   // к возвращаемой функции с условием, тогда мы его сможем перезаписывать
   let lastTime = 0;
