@@ -1,5 +1,7 @@
 import updatePreview from './gallery-preview.js';
 import openPopup from './popup.js';
+import {debounce} from './util.js';
+
 
 /**
  * @type {HTMLElement}
@@ -86,7 +88,7 @@ const onMenuClick = (event) => {
 /**
  * @param {Event & {target: HTMLButtonElement}} event
  */
-const onMenuChange = (event) => {
+const onMenuChange = debounce((event) => {
   const data = structuredClone(initialData);
 
   switch (event.target.getAttribute('id')) {
@@ -94,12 +96,12 @@ const onMenuChange = (event) => {
       data.sort(() => Math.random() - .5).splice(10);
       break;
     case 'filter-discussed':
-      data.sort((a,b) => b.comments.length - a.comments.length);
+      data.sort((a, b) => b.comments.length - a.comments.length);
       break;
   }
 
   renderPictures(data);
-};
+});
 
 /**
  * @param {PictureState[]} data

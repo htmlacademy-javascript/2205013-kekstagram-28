@@ -44,22 +44,19 @@ export const request = async (url, options) => {
  * @returns {(...args: any) => any}
  */
 export const debounce = (callback, delay = 500) => {
-  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
-  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
   let timeoutId;
+  let lastCallTime;
 
-  return (...rest) => {
-    // Перед каждым новым вызовом удаляем предыдущий таймаут,
-    // чтобы они не накапливались
+  return (...args) => {
+    const elapsedTime = Date.now() - lastCallTime;
+    const newDelay = Math.max(delay - elapsedTime, 0);
+
     clearTimeout(timeoutId);
 
-    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
     timeoutId = setTimeout(() => {
-      callback.apply(...rest);
-    }, delay);
-
-    // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
-    // пока действие совершается чаще, чем переданная задержка timeoutDelay
+      callback(...args);
+      lastCallTime = Date.now();
+    }, newDelay);
   };
 };
 
@@ -83,4 +80,4 @@ export const throttle = (callback, delayBetweenFrames) => {
       lastTime = now;
     }
   };
-}
+};
