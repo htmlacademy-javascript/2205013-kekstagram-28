@@ -4,6 +4,11 @@ import openPopup from './popup.js';
 /**
  * @type {HTMLElement}
  */
+const menu = document.querySelector('.img-filters');
+
+/**
+ * @type {HTMLElement}
+ */
 const picturesList = document.querySelector('.pictures');
 
 /**
@@ -59,7 +64,7 @@ const renderPictures = (data) => {
  * @param {PictureState[]} data
  */
 const initGallery = (data) => {
-  // TODO: Сортировка
+  menu.classList.remove('img-filters--inactive');
 
   renderPictures(data);
 };
