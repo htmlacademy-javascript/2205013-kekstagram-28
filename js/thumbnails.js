@@ -61,10 +61,29 @@ const renderPictures = (data) => {
 };
 
 /**
+ * @param {MouseEvent & {target: Element}} event
+ */
+const onMenuClick = (event) => {
+  const selectedButton = event.target.closest('button');
+
+  if (!selectedButton) {
+    return;
+  }
+
+  menu.querySelectorAll('button').forEach((button) => {
+    button.classList.remove('img-filters__button--active');
+  });
+
+  selectedButton.classList.add('img-filters__button--active');
+
+};
+
+/**
  * @param {PictureState[]} data
  */
 const initGallery = (data) => {
   menu.classList.remove('img-filters--inactive');
+  menu.addEventListener('click', onMenuClick);
 
   renderPictures(data);
 };
