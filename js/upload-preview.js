@@ -32,6 +32,9 @@ const effectFormatterMap = {
   [Effect.HEAT]: (value) => `brightness(${value})`
 };
 
+/**
+ * @param {string} name
+ */
 const createSliderOptions = (name) => {
   const [min, max, step] = effectRangeMap[name];
   const format = {

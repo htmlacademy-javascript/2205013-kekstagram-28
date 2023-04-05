@@ -48,4 +48,5 @@ const openStatusPopup = (type, data = {}) => {
 
   document.body.append(popup);
 };
+
 export default openStatusPopup;

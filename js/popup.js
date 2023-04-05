@@ -1,5 +1,4 @@
 /**
- * Событие по нажатию Esс
  * @param {KeyboardEvent & {target: Element}} event
  */
 const onDocumentKeydown = (event) => {
@@ -29,7 +28,6 @@ const onCancelButtonClick = (event) => {
 };
 
 /**
- *
  * @param {Element} popup
  */
 const openPopup = (popup) => {

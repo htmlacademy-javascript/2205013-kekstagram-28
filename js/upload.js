@@ -7,6 +7,7 @@ import {request} from './util.js';
  * @type {HTMLFormElement}
  */
 const form = document.querySelector('.img-upload__form');
+
 /**
  * @type {HTMLDivElement}
  */
@@ -54,6 +55,7 @@ const sendFormData = async () => {
   } catch (exception) {
     openStatusPopup('error');
   }
+
   form.submitButton.removeAttribute('disabled');
 };
 

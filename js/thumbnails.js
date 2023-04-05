@@ -2,7 +2,6 @@ import updatePreview from './gallery-preview.js';
 import openPopup from './popup.js';
 import {debounce} from './util.js';
 
-
 /**
  * @type {HTMLElement}
  */
@@ -46,7 +45,6 @@ const createPicture = (data) => {
   picture.querySelector('.picture__comments').textContent = String(data.comments.length);
   picture.querySelector('.picture__likes').textContent = String(data.likes);
 
-  //Замыкание, эта внутренняя функция запоминает data при клике будет обращаться к той миниатюре на которую кликнули
   picture.addEventListener('click', (event) => {
     updatePreview(data);
     openPopup(popup);
