@@ -1,12 +1,12 @@
-/**
- * Событие по нажатию Esс
- * @param {KeyboardEvent & {target: Element}} event
- */
-const onDocumentKeydown = (event) => {
-  const isEscapeKey = event.key.startsWith('Esc');
-  const isTextField = event.target.matches('input[type="text"], textarea');
+import {isEscPressed} from './util.js';
 
-  if (isEscapeKey && !isTextField) {
+/**
+ * @param {KeyboardEvent & {target: Element}} evt
+ */
+const onDocumentKeydown = (evt) => {
+  const isTextField = evt.target.matches('input[type="text"], textarea');
+
+  if (isEscPressed && !isTextField) {
     /**
      * @type {HTMLButtonElement}
      */
@@ -17,10 +17,10 @@ const onDocumentKeydown = (event) => {
 };
 
 /**
- * @param {MouseEvent & {target: Element}} event
+ * @param {MouseEvent & {target: Element}} evt
  */
-const onCancelButtonClick = (event) => {
-  const popup = event.target.closest('.overlay');
+const onCancelButtonClick = (evt) => {
+  const popup = evt.target.closest('.overlay');
 
   popup.classList.add('hidden');
 
@@ -29,7 +29,6 @@ const onCancelButtonClick = (event) => {
 };
 
 /**
- *
  * @param {Element} popup
  */
 const openPopup = (popup) => {

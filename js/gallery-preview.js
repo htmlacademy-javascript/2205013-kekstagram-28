@@ -19,6 +19,7 @@ const commentTemplate = discussion.querySelector('.social__comment');
 const loadMoreButton = preview.querySelector('.comments-loader');
 
 /**
+ * Изменяемая переменная, задаем let
  * @type {PictureState & {commentsTotal: number}}
  */
 let currentData;
@@ -51,7 +52,6 @@ const onLoadMoreButtonClick = () => {
 };
 
 /**
- *
  * @param {PictureState} data
  */
 const updatePreview = (data) => {

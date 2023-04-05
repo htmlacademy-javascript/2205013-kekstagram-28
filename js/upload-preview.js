@@ -32,6 +32,9 @@ const effectFormatterMap = {
   [Effect.HEAT]: (value) => `brightness(${value})`
 };
 
+/**
+ * @param {string} name
+ */
 const createSliderOptions = (name) => {
   const [min, max, step] = effectRangeMap[name];
   const format = {
@@ -76,6 +79,17 @@ const effectSlider = noUiSlider.create(
 );
 
 /**
+ * @param {string} url
+ */
+const setPicture = (url) => {
+  picture.setAttribute('src', url);
+
+  effectPicker.querySelectorAll('span').forEach((span) => {
+    span.style.setProperty('background-image', `url(${url})`);
+  });
+};
+
+/**
  * @param {number} percent
  */
 const setScale = (percent) => {
@@ -93,13 +107,13 @@ const setEffect = (name) => {
 };
 
 /**
- * @param {MouseEvent} event
+ * @param {MouseEvent} evt
  */
-const onScaleControlClick = (event) => {
+const onScaleControlClick = (evt) => {
   const [less, input, more] = scaleControl.querySelectorAll('input, button');
   const value = Number.parseFloat(input.getAttribute('value'));
 
-  switch (event.target) {
+  switch (evt.target) {
     case less:
       setScale(Math.max(value - Scale.STEP, Scale.MIN));
       break;
@@ -110,10 +124,10 @@ const onScaleControlClick = (event) => {
 };
 
 /**
- * @param {Event & {target: Element}} event
+ * @param {Event & {target: Element}} evt
  */
-const onEffectPickerChange = (event) => {
-  const name = event.target.getAttribute('value');
+const onEffectPickerChange = (evt) => {
+  const name = evt.target.getAttribute('value');
 
   setEffect(name);
 };
@@ -127,10 +141,10 @@ const onEffectSliderUpdate = () => {
  * @param {File} data
  */
 const updatePreview = (data) => {
-  //TODO подстановка изображения
-  void data;
+  setPicture(URL.createObjectURL(data));
   setScale(Scale.MAX);
   setEffect(Effect.NONE);
+
   scaleControl.addEventListener('click', onScaleControlClick);
   effectPicker.addEventListener('change', onEffectPickerChange);
   effectSlider.on('update', onEffectSliderUpdate);

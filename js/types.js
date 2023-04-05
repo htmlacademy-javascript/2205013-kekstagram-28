@@ -13,4 +13,4 @@
  * @prop{string} avatar
  * @prop{string} message
  * @prop{string} name
-  */
+*/

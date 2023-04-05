@@ -2,7 +2,6 @@ import updatePreview from './gallery-preview.js';
 import openPopup from './popup.js';
 import {debounce} from './util.js';
 
-
 /**
  * @type {HTMLElement}
  */
@@ -46,11 +45,10 @@ const createPicture = (data) => {
   picture.querySelector('.picture__comments').textContent = String(data.comments.length);
   picture.querySelector('.picture__likes').textContent = String(data.likes);
 
-  //Замыкание, эта внутренняя функция запоминает data при клике будет обращаться к той миниатюре на которую кликнули
-  picture.addEventListener('click', (event) => {
+  picture.addEventListener('click', (evt) => {
     updatePreview(data);
     openPopup(popup);
-    event.preventDefault();
+    evt.preventDefault();
   });
 
   return picture;
@@ -68,10 +66,10 @@ const renderPictures = (data) => {
 };
 
 /**
- * @param {MouseEvent & {target: Element}} event
+ * @param {MouseEvent & {target: Element}} evt
  */
-const onMenuClick = (event) => {
-  const selectedButton = event.target.closest('button');
+const onMenuClick = (evt) => {
+  const selectedButton = evt.target.closest('button');
 
   if (!selectedButton) {
     return;
@@ -86,12 +84,12 @@ const onMenuClick = (event) => {
 };
 
 /**
- * @param {Event & {target: HTMLButtonElement}} event
+ * @param {Event & {target: HTMLButtonElement}} evt
  */
-const onMenuChange = debounce((event) => {
+const onMenuChange = debounce((evt) => {
   const data = structuredClone(initialData);
 
-  switch (event.target.getAttribute('id')) {
+  switch (evt.target.getAttribute('id')) {
     case 'filter-random':
       data.sort(() => Math.random() - .5).splice(10);
       break;
