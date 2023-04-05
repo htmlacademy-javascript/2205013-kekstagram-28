@@ -36,3 +36,8 @@ export const debounce = (callback, delay = 500) => {
     }, newDelay);
   };
 };
+
+/**
+ * @param {KeyboardEvent} evt
+ */
+export const isEscPressed = (evt) => evt.key === 'Escape';

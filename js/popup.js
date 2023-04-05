@@ -1,11 +1,12 @@
+import {isEscPressed} from './util.js';
+
 /**
  * @param {KeyboardEvent & {target: Element}} evt
  */
 const onDocumentKeydown = (evt) => {
-  const isEscapeKey = evt.key.startsWith('Esc');
   const isTextField = evt.target.matches('input[type="text"], textarea');
 
-  if (isEscapeKey && !isTextField) {
+  if (isEscPressed && !isTextField) {
     /**
      * @type {HTMLButtonElement}
      */

@@ -1,8 +1,10 @@
+import {isEscPressed} from './util.js';
+
 /**
  * @param {KeyboardEvent} evt
  */
 const onDocumentKeydown = (evt) => {
-  if (evt.key.startsWith('Esc')) {
+  if (isEscPressed) {
     /**
      * @type {HTMLElement}
      */
