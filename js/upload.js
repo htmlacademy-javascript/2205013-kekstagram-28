@@ -62,7 +62,8 @@ const sendFormData = async () => {
  */
 const onFormChange = (event) => {
   if (event.target === form.filename) {
-    const data = event.target.files.item[0];
+    const data = event.target.files.item(0);
+
     updatePreview(data);
     openPopup(popup);
   }
