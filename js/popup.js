@@ -1,9 +1,9 @@
 /**
- * @param {KeyboardEvent & {target: Element}} event
+ * @param {KeyboardEvent & {target: Element}} evt
  */
-const onDocumentKeydown = (event) => {
-  const isEscapeKey = event.key.startsWith('Esc');
-  const isTextField = event.target.matches('input[type="text"], textarea');
+const onDocumentKeydown = (evt) => {
+  const isEscapeKey = evt.key.startsWith('Esc');
+  const isTextField = evt.target.matches('input[type="text"], textarea');
 
   if (isEscapeKey && !isTextField) {
     /**
@@ -16,10 +16,10 @@ const onDocumentKeydown = (event) => {
 };
 
 /**
- * @param {MouseEvent & {target: Element}} event
+ * @param {MouseEvent & {target: Element}} evt
  */
-const onCancelButtonClick = (event) => {
-  const popup = event.target.closest('.overlay');
+const onCancelButtonClick = (evt) => {
+  const popup = evt.target.closest('.overlay');
 
   popup.classList.add('hidden');
 

@@ -1,24 +1,24 @@
 /**
- * @param {KeyboardEvent} event
+ * @param {KeyboardEvent} evt
  */
-const onDocumentKeydown = (event) => {
-  if (event.key.startsWith('Esc')) {
+const onDocumentKeydown = (evt) => {
+  if (evt.key.startsWith('Esc')) {
     /**
      * @type {HTMLElement}
      */
     const popup = document.querySelector('.success, .error');
 
     popup.click();
-    event.stopPropagation();
+    evt.stopPropagation();
   }
 };
 
 /**
- * @param {MouseEvent & {target: Element, currentTarget: HTMLElement}} event
+ * @param {MouseEvent & {target: Element, currentTarget: HTMLElement}} evt
  */
-const onPopupClick = (event) => {
-  if (event.target.matches('section, button')) {
-    event.currentTarget.remove();
+const onPopupClick = (evt) => {
+  if (evt.target.matches('section, button')) {
+    evt.currentTarget.remove();
 
     document.removeEventListener('keydown', onDocumentKeydown, true);
   }

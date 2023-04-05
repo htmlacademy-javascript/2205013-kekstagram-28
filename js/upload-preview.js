@@ -107,13 +107,13 @@ const setEffect = (name) => {
 };
 
 /**
- * @param {MouseEvent} event
+ * @param {MouseEvent} evt
  */
-const onScaleControlClick = (event) => {
+const onScaleControlClick = (evt) => {
   const [less, input, more] = scaleControl.querySelectorAll('input, button');
   const value = Number.parseFloat(input.getAttribute('value'));
 
-  switch (event.target) {
+  switch (evt.target) {
     case less:
       setScale(Math.max(value - Scale.STEP, Scale.MIN));
       break;
@@ -124,10 +124,10 @@ const onScaleControlClick = (event) => {
 };
 
 /**
- * @param {Event & {target: Element}} event
+ * @param {Event & {target: Element}} evt
  */
-const onEffectPickerChange = (event) => {
-  const name = event.target.getAttribute('value');
+const onEffectPickerChange = (evt) => {
+  const name = evt.target.getAttribute('value');
 
   setEffect(name);
 };
