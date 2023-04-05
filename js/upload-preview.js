@@ -79,7 +79,11 @@ const effectSlider = noUiSlider.create(
  * @param {string} url
  */
 const setPicture = (url) => {
-  console.log(picture.setAttribute('src', url));
+  picture.setAttribute('src', url);
+
+  effectPicker.querySelectorAll('span').forEach((span) => {
+    span.style.setProperty('background-image', `url(${url})`);
+  });
 };
 
 /**
