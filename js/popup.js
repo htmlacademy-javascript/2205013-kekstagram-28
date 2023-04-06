@@ -6,7 +6,7 @@ import {isEscPressed} from './util.js';
 const onDocumentKeydown = (evt) => {
   const isTextField = evt.target.matches('input[type="text"], textarea');
 
-  if (isEscPressed && !isTextField) {
+  if (isEscPressed(evt) && !isTextField) {
     /**
      * @type {HTMLButtonElement}
      */
