@@ -4,7 +4,7 @@ import {isEscPressed} from './util.js';
  * @param {KeyboardEvent} evt
  */
 const onDocumentKeydown = (evt) => {
-  if (isEscPressed) {
+  if (isEscPressed(evt)) {
     /**
      * @type {HTMLElement}
      */

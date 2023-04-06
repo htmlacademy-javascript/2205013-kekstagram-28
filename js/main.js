@@ -1,4 +1,4 @@
-import initGallery from './thumbnails.js';
+import initGallery from './gallery.js';
 import openStatusPopup from './status-popup.js';
 import {request} from './util.js';
 import './upload.js';
@@ -12,7 +12,7 @@ try {
   initGallery(data);
 
 } catch (exception) {
-  const title = `Ошибка + ${exception.message}`;
+  const title = `Ошибка: ${exception.message}`;
   const button = 'Закрыть';
 
   openStatusPopup('error', {title, button});
