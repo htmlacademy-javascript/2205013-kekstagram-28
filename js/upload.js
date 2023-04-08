@@ -3,6 +3,12 @@ import updatePreview from './upload-preview.js';
 import openStatusPopup from './status-popup.js';
 import {request} from './util.js';
 
+const TAG_START = '#';
+const TAG_PATTERN = new RegExp(`^${TAG_START}[a-zа-яё0-9]+$`);
+const TAG_MAX_LENGTH = 20;
+const TAG_MAX_QUANTITY = 5;
+const DESCRIPTION_MAX_LENGTH = 140;
+
 /**
  * @type {HTMLFormElement}
  */
@@ -88,23 +94,23 @@ const onFormSubmit = (event) => {
 };
 
 addHashTagsValidator(
-  'Хештеги должны начинаться с символа # (решетка)',
-  (tags) => tags.every((tag) => tag.startsWith('#'))
+  `Хештеги должны начинаться с символа ${TAG_START}`,
+  (tags) => tags.every((tag) => tag.startsWith(TAG_START))
 );
 
 addHashTagsValidator(
-  'После символа # (решетка) должны идти буквы/цифры, хештеги разделяются пробелом',
-  (tags) => tags.every((tag) => /^#[a-zа-яё0-9]+$/.test(tag))
+  `После символа ${TAG_START} должны идти буквы/цифры, хештеги разделяются пробелом`,
+  (tags) => tags.every((tag) => TAG_PATTERN.test(tag))
 );
 
 addHashTagsValidator(
-  'Максимальная длина хештега 20 символов',
-  (tags) => tags.every((tag) => tag.length <= 20)
+  `Максимальная длина хештега ${TAG_MAX_LENGTH} символов`,
+  (tags) => tags.every((tag) => tag.length <= TAG_MAX_LENGTH)
 );
 
 addHashTagsValidator(
-  'Укажите не более 5 хештегов',
-  (tags) => tags.length <= 5
+  `Укажите не более ${TAG_MAX_QUANTITY} хештегов`,
+  (tags) => tags.length <= TAG_MAX_QUANTITY
 );
 
 addHashTagsValidator(
@@ -113,8 +119,8 @@ addHashTagsValidator(
 );
 
 addDescriptionValidator(
-  'Длина описание не должна превышать 140 символов',
-  (description) => description.length <= 140
+  `Длина описание не должна превышать ${DESCRIPTION_MAX_LENGTH}  символов`,
+  (description) => description.length <= DESCRIPTION_MAX_LENGTH
 );
 
 form.addEventListener('change', onFormChange);
