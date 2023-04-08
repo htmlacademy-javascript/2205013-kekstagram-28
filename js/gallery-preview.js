@@ -1,3 +1,5 @@
+const COMMENTS_PER_PAGE = 5;
+
 /**
  * @param {HTMLElement} preview
  */
@@ -43,7 +45,7 @@ const createComment = (data) => {
 };
 
 const onLoadMoreButtonClick = () => {
-  const newComments = currentData.comments.splice(0, 5).map(createComment);
+  const newComments = currentData.comments.splice(0, COMMENTS_PER_PAGE).map(createComment);
   const shownComments = currentData.commentsTotal - currentData.comments.length;
 
   preview.querySelector('.comments-shown').textContent = String(shownComments);
